@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 p-10">
+    <form action="/contact" class="bg-slate-700 m-10 p-5 rounded" method="POST">
+      
+        <h1 class="h3 mb-3 font-weight-normal text-white text-3xl mb-10 underline">Enter contact details</h1>
+        <!-- remember that input has name not id and name can be reffered in bodyparser module and value entered can be retrieved -->
+        <input type="text" name="fname" class="form-control ip h-9 mr-5 mt-10 p-3" placeholder="First name" required autofocus>
+        <input type="tel" name="phno" class="form-control ip h-9 mx-5 mt-10 p-3" placeholder="Number" pattern="[0-9]{10}" required >
+        <button class="btn btn-lg btn-primary btn-block bg-gradient-to-r from-cyan-500 to-blue-500 text-lg rounded ml-10 p-2" type="submit">Save Contact</button>
+        
+      </form>
+</body>
+</html>

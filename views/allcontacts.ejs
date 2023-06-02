@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-800">
+    <div class="">
+    <h1 class="text-6xl text-white underline mx-64 mb-10">Contact List</h1>
+  <ul>
+    <% contacts.forEach(contact => { %>
+      <li class="bg-slate-700 mb-5 hover:bg-gray-600 text-white text-lg flex justify-between items-center w-2/3 p-5 m-auto rounded">
+        <div>
+        <h2>Name : <%= contact.name %></h2>
+        <p>Phone Numbers : <%= contact.numbers.join(', ') %></p>
+        </div>
+        <!-- <% if (contact.imageUrl) { %>
+          <img src="<%= contact.imageUrl %>" alt="Contact Image">
+        <% } %> -->
+        <div class="flex gap-10">
+        <button onclick="deleteContact('<%= contact._id %>')" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-2 rounded">Delete</button>
+        <a href="/updateContact/<%=contact._id %>" class="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% p-2 rounded">Update</a>
+        <a href="/addMoreNumbers/<%=contact._id %>" class="text-white center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br p-2 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 w-max text-center rounded">+ Numbers</a>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+</div>
+</body>
+
+<script>
+   async function deleteContact(contactId) {
+      try {
+        const response = await fetch(`/contacts/${contactId}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          console.log('Contact deleted successfully.');
+          // Refresh the page to update the contact list
+          location.reload();
+        } else {
+          console.error('Failed to delete contact.');
+        }
+      } catch (error) {
+        console.error('An error occurred while deleting the contact:', error);
+      }
+    }
+  </script>
+
+</html>
